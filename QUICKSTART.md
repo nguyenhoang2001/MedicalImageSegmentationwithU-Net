@@ -38,6 +38,7 @@ python prepare_data.py \
 ### Option C: Custom Dataset
 
 Organize your data:
+
 ```
 data/
 ├── images/
@@ -49,11 +50,13 @@ data/
 ## Step 3: Train Your First Model (30 seconds to start)
 
 ### Quick Training (Small dataset, fast testing)
+
 ```bash
 python train.py --data_dir data/ --epochs 10 --batch_size 4
 ```
 
 ### Full Training (Better results)
+
 ```bash
 python train.py \
     --data_dir data/ \
@@ -64,6 +67,7 @@ python train.py \
 ```
 
 **Training will show:**
+
 - Progress bars for each epoch
 - Loss, Dice, and IoU metrics
 - Automatic saving of best model
@@ -77,6 +81,7 @@ python evaluate.py \
 ```
 
 **You'll get:**
+
 - Comprehensive metrics report
 - Confusion matrix
 - Sample predictions
@@ -85,6 +90,7 @@ python evaluate.py \
 ## Step 5: Make Predictions
 
 ### Single Image
+
 ```bash
 python inference.py \
     --model_path checkpoints/best_model.pth \
@@ -93,6 +99,7 @@ python inference.py \
 ```
 
 ### Batch Processing
+
 ```bash
 python inference.py \
     --model_path checkpoints/best_model.pth \
@@ -103,11 +110,13 @@ python inference.py \
 ## 🎯 Expected Results
 
 ### After 10 epochs on Carvana:
+
 - Dice Score: ~0.75-0.85
 - IoU Score: ~0.65-0.75
 - Training time: ~10-30 minutes (depending on GPU)
 
 ### After 50 epochs on Carvana:
+
 - Dice Score: >0.90
 - IoU Score: >0.82
 - Training time: ~1-3 hours (depending on GPU)
@@ -115,14 +124,17 @@ python inference.py \
 ## 🔧 Troubleshooting
 
 ### "CUDA out of memory"
+
 ```bash
 python train.py --batch_size 2 --image_size 128
 ```
 
 ### "No images found"
+
 Check your data directory structure matches the required format.
 
 ### Slow training
+
 - Use smaller `--image_size` (e.g., 128 or 192)
 - Reduce `--batch_size`
 - Use `--bilinear` flag for lighter model

@@ -24,7 +24,7 @@ This project implements a professional U-Net model for semantic segmentation, su
 ✅ **Training Pipeline**: Full training loop with validation and checkpointing  
 ✅ **Evaluation Tools**: Detailed evaluation with confusion matrix and visualizations  
 ✅ **Inference Support**: Single image and batch prediction capabilities  
-✅ **Visualization**: Beautiful plots and overlays for predictions  
+✅ **Visualization**: Beautiful plots and overlays for predictions
 
 ## 🏗️ Project Structure
 
@@ -112,6 +112,7 @@ data/
 ```
 
 **Important Notes:**
+
 - Image and mask filenames should match (e.g., `image001.jpg` → `image001.png`)
 - Masks should be binary (0 for background, 255 for foreground)
 - Masks can have suffixes like `_mask` (e.g., `image001_mask.png`)
@@ -153,18 +154,18 @@ python train.py \
 
 #### Training Arguments
 
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `--data_dir` | Path to dataset directory | `data` |
-| `--epochs` | Number of training epochs | `50` |
-| `--batch_size` | Batch size | `8` |
-| `--lr` | Learning rate | `0.001` |
-| `--loss` | Loss function: `bce`, `dice`, `combined` | `combined` |
-| `--scheduler` | Use learning rate scheduler | `False` |
-| `--image_size` | Input image size | `256` |
-| `--val_split` | Validation split ratio | `0.2` |
-| `--checkpoint_dir` | Directory for checkpoints | `checkpoints` |
-| `--save_every` | Save checkpoint every N epochs | `10` |
+| Argument           | Description                              | Default       |
+| ------------------ | ---------------------------------------- | ------------- |
+| `--data_dir`       | Path to dataset directory                | `data`        |
+| `--epochs`         | Number of training epochs                | `50`          |
+| `--batch_size`     | Batch size                               | `8`           |
+| `--lr`             | Learning rate                            | `0.001`       |
+| `--loss`           | Loss function: `bce`, `dice`, `combined` | `combined`    |
+| `--scheduler`      | Use learning rate scheduler              | `False`       |
+| `--image_size`     | Input image size                         | `256`         |
+| `--val_split`      | Validation split ratio                   | `0.2`         |
+| `--checkpoint_dir` | Directory for checkpoints                | `checkpoints` |
+| `--save_every`     | Save checkpoint every N epochs           | `10`          |
 
 #### Training Outputs
 
@@ -246,16 +247,16 @@ python inference.py \
 
 #### Inference Arguments
 
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `--model_path` | Path to trained model | *required* |
-| `--image_path` | Single image path | - |
-| `--image_dir` | Directory of images | - |
-| `--mask_path` | Ground truth mask (optional) | - |
-| `--threshold` | Prediction threshold | `0.5` |
-| `--save_overlay` | Save colored overlay | `False` |
-| `--show_probability` | Show probability map | `False` |
-| `--output_dir` | Output directory | `predictions` |
+| Argument             | Description                  | Default       |
+| -------------------- | ---------------------------- | ------------- |
+| `--model_path`       | Path to trained model        | _required_    |
+| `--image_path`       | Single image path            | -             |
+| `--image_dir`        | Directory of images          | -             |
+| `--mask_path`        | Ground truth mask (optional) | -             |
+| `--threshold`        | Prediction threshold         | `0.5`         |
+| `--save_overlay`     | Save colored overlay         | `False`       |
+| `--show_probability` | Show probability map         | `False`       |
+| `--output_dir`       | Output directory             | `predictions` |
 
 #### Inference Outputs
 
@@ -303,6 +304,7 @@ Output (1, 256, 256)
 ```
 
 **Features:**
+
 - **31M parameters** for standard U-Net
 - **Skip connections** preserve spatial information
 - **Batch normalization** for stable training
@@ -314,6 +316,7 @@ Output (1, 256, 256)
 ### Data Augmentation
 
 Training uses extensive augmentation via Albumentations:
+
 - Horizontal and vertical flips
 - 90-degree rotations
 - Affine transformations (scale, translate, rotate)
@@ -348,6 +351,7 @@ After training on your dataset, you should see:
 ### Common Issues
 
 **1. Out of Memory (OOM)**
+
 ```bash
 # Reduce batch size
 python train.py --batch_size 4
@@ -360,6 +364,7 @@ python train.py --bilinear
 ```
 
 **2. Poor Performance**
+
 - Ensure masks are binary (0 and 255)
 - Check train/val split is reasonable (80/20)
 - Try different loss functions (`--loss combined`)
@@ -367,6 +372,7 @@ python train.py --bilinear
 - Enable learning rate scheduling (`--scheduler`)
 
 **3. Dataset Not Found**
+
 ```bash
 # Verify directory structure
 ls data/images/
@@ -379,16 +385,19 @@ python prepare_data.py --source_images ... --source_masks ...
 ## 🔧 System Requirements
 
 ### Minimum
+
 - CPU: Multi-core processor
 - RAM: 8 GB
 - Storage: 2 GB for code + dataset size
 
 ### Recommended
+
 - GPU: NVIDIA GPU with 6+ GB VRAM (GTX 1060 or better)
 - RAM: 16 GB
 - Storage: SSD with 10+ GB
 
 ### Tested On
+
 - Ubuntu 20.04 / macOS 12+ / Windows 10
 - Python 3.8, 3.9, 3.10, 3.11, 3.12
 - PyTorch 2.0, 2.1, 2.2
